@@ -4,7 +4,7 @@ import sqlite3
 import datetime
 import os
 
-app = Flask(__name__, static_folder='static', static_url_path='') # staticフォルダを静的ファイル提供のルートに設定
+app = Flask(__name__, static_folder='public', static_url_path='') # staticフォルダを静的ファイル提供のルートに設定
 DATABASE = 'board.db'
 
 # データベースの初期化
@@ -29,7 +29,7 @@ def setup():
 # ルートURLでstaticフォルダ内のindex.htmlを返す
 @app.route('/')
 def serve_index():
-    return send_from_directory(app.static_folder, 'index.html')
+    return send_from_directory(app.public_folder, 'index.html')
 
 # 投稿一覧を取得するAPIエンドポイント
 @app.route('/api/posts', methods=['GET'])
